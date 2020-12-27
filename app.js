@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let height = 10;
     //stores the location of the bombs
     let bombPlots = [];
+    let visited = {};
 
     function createBoard() {
         for (let i = 0; i < height; i++) {
@@ -45,8 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let bound = [];
         let yBound = [];
         let count =0;
+        let stack = [];
 
         console.log("Clicked" , xCoord, yCoord);
+        visited[`${xCoord}-${yCoord}`] = 1;
+
+        console.log(visited);
 
         if (isBomb(xCoord, yCoord)){
             gameOver();
@@ -69,10 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
            for(let i = bound[0][0]; i <= bound[0][1]; i++ ){
                for (let j = bound[1][0]; j <= bound[1][1]; j++) {
-                    if (isBomb(xCoord + i, yCoord + j)) {
-                        count ++;
-                    }
+                   let futureX = xCoord + i;
+                   let futureY = yCoord + j;
+                   if (!visited.hasOwnProperty(`${futureX}-${futureY}`)) {
+                        stack.push([futureX, futureY]);
+                        if (isBomb(futureX, futureY)) {
+                            count ++;
+                        }
+                   }
                }
+           }
+           
+           if (count == 0) {
+                while(stack.length > 0) {
+                    coord = stack.pop();
+                    clicked(coord[0], coord[1]);
+                }
            }
 
            const plot = document.getElementById(`${xCoord}-${yCoord}`);
