@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let bombPlots = [];
 
     function createBoard() {
-        for (let i = 0; i < width * width; i++) {
+        for (let i = 0; i < width; i++) {
+            for (let j = 0; j < width; j++) {
             const plot = document.createElement('div');
-            plot.setAttribute('id', i);
+            plot.setAttribute('id', `${i}-${j}`);
             gameBoard.appendChild(plot);
+            }
         }
     }
 
@@ -22,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function clicked(plot){
+        
+
+    }
     createBoard();
     fillPlots(5);
 })
