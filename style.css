@@ -1,18 +1,25 @@
 body {
-    background-color: #ebebeb;
+	background-color: #ebebeb;
 }
-
-.game-board{
-    width: 400px;
-    height: 400px;
-    background-color: aquamarine;
-    display: flex;
-    flex-wrap: wrap;
+.game-board {
+	width: 400px;
+	height: 400px;
+	background-color: aquamarine;
+	display: flex;
+	flex-wrap: wrap;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
 }
 
 .game-board > div {
-    width: 40px;
-    height: 40px;
-    box-shadow:inset 0px 0px 0px 1px #000000;
-    text-align: center;
+	width: 40px;
+	height: 40px;
+	box-shadow: inset 0px 0px 0px 1px #000000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Roboto Mono", monospace;
+	font-size: large;
 }
